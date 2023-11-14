@@ -17,7 +17,6 @@ public class Target : MonoBehaviour
 
     void Die()
     {
-        // Handle the death of the target (e.g., disable the GameObject)
         Destroy(gameObject);
     }
 }
