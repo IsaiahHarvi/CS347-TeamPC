@@ -12,12 +12,11 @@ Pickle Shooter is a FPS Unity 3D game.
 2. Open the project in Unity3D.
 
 ## How to Play
-WASD + SPACE: Movement
-MOUSE: Look
+WASD + SPACE: Movement\n
+MOUSE: Look\n
 MOUSE BUTTONS: Interact
 
 ## Features
-List the key features of your game. This could include:
 - Unique gameplay mechanics
 - Level design
 - Multiplayer components
