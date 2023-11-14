@@ -5,13 +5,20 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 5.0f;
+    public float sprintSpeed = 8.0f;
+    public float crouchSpeed = 2.5f;
     public float jumpForce = 5.0f;
-    public Camera playerCamera;
     public float mouseSensitivity = 500f;
+    public Camera playerCamera;
+    public float adsFOV = 60f;
+    public float normalFOV = 90f; 
+    public float health = 100f;
 
     private Rigidbody rb;
     private float xRotation = 0f;
     private bool isGrounded;
+    private bool isCrouching = false;
+    private bool isSprinting = false;
 
     void Start()
     {
@@ -24,24 +31,48 @@ public class PlayerController : MonoBehaviour
         MovePlayer();
         MouseLook();
 
-        // Jump only if the upward velocity is approximately zero
-        if (Input.GetButtonDown("Jump") && Mathf.Abs(rb.velocity.y) < 0.01f)
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             Jump();
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            ToggleCrouch();
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            isSprinting = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            isSprinting = false;
+        }
+
+        if (Input.GetMouseButtonDown(1)) //right mouse button
+        {
+            playerCamera.fieldOfView = adsFOV;
+        }
+        else if (Input.GetMouseButtonUp(1))
+        {
+            playerCamera.fieldOfView = normalFOV;
+        }
+
+        if (health <= 0)
+        {
+            // Handle player death
         }
     }
 
     void FixedUpdate()
     {
-        // Update isGrounded based on the vertical velocity
-        if (Mathf.Abs(rb.velocity.y) < 0.01f)
-        {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
-        }
+        CheckGroundStatus();
+    }
+
+    void CheckGroundStatus()
+    {
+        isGrounded = Mathf.Abs(rb.velocity.y) < 0.01f;
     }
 
     void MovePlayer()
@@ -50,7 +81,22 @@ public class PlayerController : MonoBehaviour
         float z = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * x + transform.forward * z;
-        transform.position += move * speed * Time.deltaTime;
+        float currentSpeed = isCrouching ? crouchSpeed : (isSprinting ? sprintSpeed : speed);
+        transform.position += move * currentSpeed * Time.deltaTime;
+    }
+
+    void ToggleCrouch()
+    {
+        isCrouching = !isCrouching;
+        // Implement height adjustment for crouching
+    }
+
+    void Jump()
+    {
+        if (isGrounded)
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
     }
 
     void MouseLook()
@@ -65,8 +111,16 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(Vector3.up * mouseX);
     }
 
-    void Jump()
+
+    public void TakeDamage(float amount)
     {
-        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        health -= amount;
+        if (health < 0) health = 0;
+    }
+
+    public void Heal(float amount)
+    {
+        health += amount;
+        if (health > 100) health = 100;
     }
 }

@@ -12,6 +12,8 @@ public class HitscanGun : MonoBehaviour
     public float reloadTime = 1f;
     public bool isAutomatic = false;
     public AudioClip[] fireSounds;
+    public AudioClip[] reloadSounds;
+
 
     private float nextTimeToFire = 0f;
     private int currentAmmo;
@@ -46,14 +48,19 @@ public class HitscanGun : MonoBehaviour
             return;
         }
 
-        if (isAutomatic && Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
+        // Check if enough time has passed based on the fire rate
+        if (Time.time >= nextTimeToFire)
         {
-            nextTimeToFire = Time.time + 1f / fireRate;
-            Shoot();
-        }
-        else if (!isAutomatic && Input.GetButtonDown("Fire1"))
-        {
-            Shoot();
+            if (isAutomatic && Input.GetButton("Fire1"))
+            {
+                nextTimeToFire = Time.time + 1f / fireRate;
+                Shoot();
+            }
+            else if (!isAutomatic && Input.GetButtonDown("Fire1"))
+            {
+                nextTimeToFire = Time.time + 1f / fireRate;
+                Shoot();
+            }
         }
     }
 
@@ -62,11 +69,14 @@ public class HitscanGun : MonoBehaviour
         isReloading = true;
         Debug.Log("Reloading...");
 
+        PlayReloadSound(); 
+
         yield return new WaitForSeconds(reloadTime);
 
         currentAmmo = maxAmmo;
         isReloading = false;
     }
+
 
     void Shoot()
     {
@@ -108,6 +118,15 @@ public class HitscanGun : MonoBehaviour
         {
             // Play a random sound from the array
             audioSource.PlayOneShot(fireSounds[Random.Range(0, fireSounds.Length)]);
+        }
+    }
+
+    void PlayReloadSound()
+    {
+        if (reloadSounds.Length > 0)
+        {
+            // Play a random sound from the array
+            audioSource.PlayOneShot(reloadSounds[Random.Range(0, reloadSounds.Length)]);
         }
     }
 }
