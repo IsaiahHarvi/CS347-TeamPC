@@ -25,8 +25,8 @@ Pickle Shooter is a FPS Unity 3D game.
 WIP
 
 ## Credits
-Jacob Neel
-Isaiah Harville
-Lucas Codello
-JP Morton
+Jacob Neel,
+Isaiah Harville,
+Lucas Codello,
+JP Morton,
 Logan Parker
