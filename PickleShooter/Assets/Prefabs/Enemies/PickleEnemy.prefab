@@ -176,6 +176,7 @@ GameObject:
   - component: {fileID: 5979927871097142943}
   - component: {fileID: 5979927871097142914}
   - component: {fileID: 1199040048535130892}
+  - component: {fileID: 7008948370051507909}
   m_Layer: 0
   m_Name: PickleEnemy
   m_TagString: Untagged
@@ -213,7 +214,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
@@ -245,6 +246,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundEffects:
   - {fileID: 8300000, guid: 404e356c9a17bb34b8e6a99e780c503d, type: 3}
+  - {fileID: 8300000, guid: b80df03376d7c1f4292af62aff752669, type: 3}
+  - {fileID: 8300000, guid: 6e13ae7ba53e47548a3373422f2264f3, type: 3}
+  - {fileID: 8300000, guid: 1beb92be173496347979f3f02fd70f63, type: 3}
+  - {fileID: 8300000, guid: e4a664a739a3eb6459428c1d529c3b88, type: 3}
+  - {fileID: 8300000, guid: 92b5630cafb2f0a46829260c529e0759, type: 3}
+  - {fileID: 8300000, guid: 54dad10e7eecd57419ece95a5d91feb1, type: 3}
+  - {fileID: 8300000, guid: c86952c02f5569a479e43659d0365e66, type: 3}
+  - {fileID: 8300000, guid: c9fae3a67c2287c4f87e044b84ff170c, type: 3}
+  - {fileID: 8300000, guid: 2522370380080974a9dafbad19f0f8ee, type: 3}
+  - {fileID: 8300000, guid: d908a4fa1a3858b4b8c16887880997c1, type: 3}
   target: {fileID: 0}
 --- !u!195 &5979927871097142914
 NavMeshAgent:
@@ -281,6 +292,102 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
+--- !u!82 &7008948370051507909
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6790743684162700236}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 50
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &6937182996784541853
 GameObject:
   m_ObjectHideFlags: 0

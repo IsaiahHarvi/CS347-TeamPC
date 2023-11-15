@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI; // For NavMeshAgent
+using UnityEngine.AI;
 
 public class PickleEnemy : MonoBehaviour
 {
@@ -9,7 +9,6 @@ public class PickleEnemy : MonoBehaviour
     public AudioClip[] soundEffects;
     private AudioSource audioSource;
     private float timeSinceLastSound = 0f;
-
 
     // Pathfinding
     private NavMeshAgent agent;
@@ -26,7 +25,20 @@ public class PickleEnemy : MonoBehaviour
 
         // Initialize NavMeshAgent
         agent = GetComponent<NavMeshAgent>();
-        
+
+        // Set target to a GameObject with tag 'Target' if target is null
+        if (target == null)
+        {
+            GameObject targetObject = GameObject.FindGameObjectWithTag("Target");
+            if (targetObject != null)
+            {
+                target = targetObject.transform;
+            }
+            else
+            {
+                Debug.LogError("No GameObject with tag 'Target' found in the scene.");
+            }
+        }
     }
 
     void Update()
