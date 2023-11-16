@@ -112,9 +112,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  sprintSpeed: 8
+  crouchSpeed: 2.5
   jumpForce: 5
-  playerCamera: {fileID: 5618904415381666358}
   mouseSensitivity: 700
+  playerCamera: {fileID: 5618904415381666358}
+  adsFOV: 45
+  normalFOV: 90
+  health: 100
 --- !u!54 &3577125376766022647
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -187,7 +192,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -252,7 +257,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4035219142733080, guid: 689946d975a0e55449b1e7ae41933e73, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.915
+      value: 0.572
       objectReference: {fileID: 0}
     - target: {fileID: 4035219142733080, guid: 689946d975a0e55449b1e7ae41933e73, type: 3}
       propertyPath: m_LocalRotation.w
@@ -420,6 +425,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 223a9d4a64780ca41b7908912d088320, type: 3}
   - {fileID: 8300000, guid: 49ac034e41f72fd4584d32988e0cb709, type: 3}
   - {fileID: 8300000, guid: fc69fed0cb4b67b43be2c345ab14e7e0, type: 3}
+  reloadSounds: []
   fpsCam: {fileID: 5618904415381666358}
   muzzleFlashObject: {fileID: 5618904416023661497}
   impactEffect: {fileID: 100002, guid: 99c73c92ac40473459640b165473206f, type: 3}

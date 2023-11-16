@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
+        playerCamera.fieldOfView = normalFOV;
     }
 
     void Update()
