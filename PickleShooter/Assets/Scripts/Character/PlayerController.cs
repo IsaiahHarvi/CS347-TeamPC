@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private float footstepSoundInterval = 0.5f; 
 
     private float distanceToGround = 1.5f;
+    
 
 
     private FootstepSoundManager footstepSoundManager;
