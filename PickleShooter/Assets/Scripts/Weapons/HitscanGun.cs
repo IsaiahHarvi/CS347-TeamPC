@@ -25,11 +25,19 @@ public class HitscanGun : MonoBehaviour
     public GameObject muzzleFlashObject;
     public GameObject impactEffect;
 
+    public float recoilAmount = 5f; // Adjust this value to control the recoil strength
+    public float recoilRecoverySpeed = 5f; // Speed at which the weapon returns to original position
+
+    private Vector3 originalRotation; // To store the original rotation of the weapon
+    private float currentRecoilOffset = 0f; // Current recoil offset on X-axis
+
     void Start()
     {
         currentAmmo = maxAmmo;
         muzzleFlashObject.SetActive(false);
         audioSource = GetComponent<AudioSource>();
+
+        originalRotation = transform.localEulerAngles;
     }
 
     void OnEnable()
@@ -62,6 +70,10 @@ public class HitscanGun : MonoBehaviour
                 Shoot();
             }
         }
+
+        // Apply recoil recovery
+        currentRecoilOffset = Mathf.Lerp(currentRecoilOffset, 0f, recoilRecoverySpeed * Time.deltaTime);
+        ApplyRecoil();
     }
 
     IEnumerator Reload()
@@ -103,6 +115,10 @@ public class HitscanGun : MonoBehaviour
             GameObject impactGO = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
             Destroy(impactGO, 2f);
         }
+
+        // Apply recoil
+        currentRecoilOffset += recoilAmount; // Increase recoil offset on X-axis
+        ApplyRecoil();
     }
 
     IEnumerator MuzzleFlashSequence()
@@ -129,4 +145,11 @@ public class HitscanGun : MonoBehaviour
             audioSource.PlayOneShot(reloadSounds[Random.Range(0, reloadSounds.Length)]);
         }
     }
+
+    void ApplyRecoil()
+    {
+        // Apply the current recoil to the weapon's rotation
+        transform.localEulerAngles = new Vector3(originalRotation.x + currentRecoilOffset, originalRotation.y, originalRotation.z);
+    }
+
 }

@@ -122,6 +122,8 @@ MonoBehaviour:
   adsFOV: 45
   normalFOV: 90
   health: 100
+  maxVerticalRecoil: 100
+  maxHorizontalRecoil: 5
 --- !u!54 &3577125376766022647
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -628,6 +630,13 @@ MonoBehaviour:
   fpsCam: {fileID: 5618904415381666358}
   muzzleFlashObject: {fileID: 5618904416023661497}
   impactEffect: {fileID: 100002, guid: 99c73c92ac40473459640b165473206f, type: 3}
+  recoilAmount: 2
+  recoilRecoverySpeed: 2
+  cameraRecoilAmountX: 2
+  cameraRecoilAmountY: 1
+  cameraRecoilSpeed: 2
+  fpsCamera: {fileID: 5618904415381666358}
+  playerObject: {fileID: 5876072528069801894}
 --- !u!1001 &5618904416023694623
 PrefabInstance:
   m_ObjectHideFlags: 0
