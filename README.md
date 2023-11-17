@@ -1,7 +1,7 @@
 # Project Title: Pickle Shooter
 
 ## Overview
-Pickle Shooter is a FPS Unity 3D game.
+Pickle Shooter is an FPS Unity 3D game created by Team Pickle Chips in Dr. Chung's CS-347 course at UAH.
 
 ## Installation
 ### Prerequisites
