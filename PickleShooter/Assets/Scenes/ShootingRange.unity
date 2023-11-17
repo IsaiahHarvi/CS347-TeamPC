@@ -2042,6 +2042,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Garage
       objectReference: {fileID: 0}
+    - target: {fileID: 4348460567842279125, guid: 4978b0f86a7cd594b8ed60f933c7b087, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4348460567842279127, guid: 4978b0f86a7cd594b8ed60f933c7b087, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -2123,6 +2127,30 @@ PrefabInstance:
       propertyPath: volumeLayer.m_Bits
       value: 64
       objectReference: {fileID: 0}
+    - target: {fileID: 4218411844138449736, guid: 3143e4f46d5fa854a83b6b7f4972344d, type: 3}
+      propertyPath: fireSounds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218411844138449736, guid: 3143e4f46d5fa854a83b6b7f4972344d, type: 3}
+      propertyPath: reloadSounds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218411844138449736, guid: 3143e4f46d5fa854a83b6b7f4972344d, type: 3}
+      propertyPath: fireSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: c664a665454aaba41a028bfd2e1d8dd2, type: 3}
+    - target: {fileID: 4218411844138449736, guid: 3143e4f46d5fa854a83b6b7f4972344d, type: 3}
+      propertyPath: fireSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: c664a665454aaba41a028bfd2e1d8dd2, type: 3}
+    - target: {fileID: 4218411844138449736, guid: 3143e4f46d5fa854a83b6b7f4972344d, type: 3}
+      propertyPath: reloadSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 0a543d27468e9bc46b0da9e6e62af3f7, type: 3}
+    - target: {fileID: 4218411844138449736, guid: 3143e4f46d5fa854a83b6b7f4972344d, type: 3}
+      propertyPath: reloadSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 0a543d27468e9bc46b0da9e6e62af3f7, type: 3}
     - target: {fileID: 5341639846857338384, guid: 3143e4f46d5fa854a83b6b7f4972344d, type: 3}
       propertyPath: m_Enabled
       value: 1
