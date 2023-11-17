@@ -10,6 +10,8 @@ public class PickleEnemy : MonoBehaviour
     private AudioSource audioSource;
     private float timeSinceLastSound = 0f;
 
+    public float damageAmount = 10f;
+
     // Pathfinding
     private NavMeshAgent agent;
     public Transform target; 
@@ -26,17 +28,17 @@ public class PickleEnemy : MonoBehaviour
         // Initialize NavMeshAgent
         agent = GetComponent<NavMeshAgent>();
 
-        // Set target to a GameObject with tag 'Target' if target is null
+        // Set target to a GameObject with tag 'Player' if target is null
         if (target == null)
         {
-            GameObject targetObject = GameObject.FindGameObjectWithTag("Target");
+            GameObject targetObject = GameObject.FindGameObjectWithTag("Player");
             if (targetObject != null)
             {
                 target = targetObject.transform;
             }
             else
             {
-                Debug.LogError("No GameObject with tag 'Target' found in the scene.");
+                Debug.LogError("No GameObject with tag 'Player' found in the scene.");
             }
         }
     }
@@ -88,4 +90,20 @@ public class PickleEnemy : MonoBehaviour
             audioSource.PlayOneShot(soundEffects[index], 1.0f);
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        // Check if the collided object is the player
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            // Attempt to call takeDamage on the player
+            PlayerController playerScript = collision.gameObject.GetComponent<PlayerController>();
+            if (playerScript != null)
+            {
+                playerScript.TakeDamage(damageAmount);
+            }
+        }
+    }
+
+    
 }
