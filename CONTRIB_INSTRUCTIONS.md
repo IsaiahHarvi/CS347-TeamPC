@@ -1,4 +1,6 @@
 # Contributing Guidelines
+
+NOTE: Contributions are restricted to listed contributors.
 ### Getting Started
 
 1. **Clone the Repository**: Clone the repository to your local machine.
