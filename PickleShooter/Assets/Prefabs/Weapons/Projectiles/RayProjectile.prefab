@@ -114,6 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifetime: 5
   damage: 50
+  impactEffect: {fileID: 2476425977252985312, guid: e541fc3cd80df2f489ee32250873ee18, type: 3}
 --- !u!135 &3776697888516445178
 SphereCollider:
   m_ObjectHideFlags: 0

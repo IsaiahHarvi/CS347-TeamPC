@@ -6,6 +6,8 @@ public class Projectile : MonoBehaviour
 {
     public float lifetime = 5f; // Lifetime of the projectile in seconds
     public float damage = 10f;
+    public GameObject impactEffect;
+
 
     void Start()
     {
@@ -23,6 +25,15 @@ public class Projectile : MonoBehaviour
         else
         {
             Debug.Log("Hit something else: " + collision.gameObject.tag);
+        }
+
+        // Create impact effect at the point of collision
+        if (impactEffect != null)
+        {
+            ContactPoint contact = collision.contacts[0];
+            Quaternion rotation = Quaternion.LookRotation(contact.normal);
+            GameObject impactGO = Instantiate(impactEffect, contact.point, rotation);
+            Destroy(impactGO, 2f); // Destroy the impact effect after 2 seconds
         }
 
         // Destroy the projectile on collision
