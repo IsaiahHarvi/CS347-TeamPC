@@ -21,7 +21,10 @@ public class ProjectileGun : MonoBehaviour
     private AudioSource audioSource;
 
     public Camera fpsCam;
+    public GameObject muzzleFlashObject;
     public Transform muzzleTransform;
+
+    
 
     void Start()
     {
@@ -34,13 +37,13 @@ public class ProjectileGun : MonoBehaviour
         if (isReloading)
             return;
 
-        if (currentAmmo <= 0 || Input.GetKeyDown(KeyCode.R))
+        if (currentAmmo <= 0 && Input.GetKeyDown(KeyCode.R))
         {
             StartCoroutine(Reload());
             return;
         }
 
-        if (Time.time >= nextTimeToFire)
+        if (Time.time >= nextTimeToFire && currentAmmo > 0)
         {
             if (isAutomatic && Input.GetButton("Fire1"))
             {
@@ -73,12 +76,20 @@ public class ProjectileGun : MonoBehaviour
             Rigidbody rb = projectile.GetComponent<Rigidbody>();
             rb.velocity = muzzleTransform.forward * projectileSpeed;
             PlayGunFireSound();
+            StartCoroutine(MuzzleFlashSequence()); // Activate muzzle flash
             currentAmmo--;
         }
         else
         {
             Debug.LogError("Projectile prefab or muzzle transform is not assigned.");
         }
+    }
+
+    IEnumerator MuzzleFlashSequence()
+    {
+        muzzleFlashObject.SetActive(true);
+        yield return new WaitForSeconds(0.2f); 
+        muzzleFlashObject.SetActive(false);
     }
 
     void PlayGunFireSound()
