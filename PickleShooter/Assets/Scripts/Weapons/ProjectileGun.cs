@@ -7,7 +7,7 @@ public class ProjectileGun : MonoBehaviour
     public float damage = 10f;
     public float fireRate = 1f;
     public int maxAmmo = 10;
-    public float reloadTime = 2f;
+    public float reloadTime = 1.5f;
     public bool isAutomatic = false;
     public GameObject projectilePrefab;
     public float projectileSpeed = 20f;
@@ -18,7 +18,8 @@ public class ProjectileGun : MonoBehaviour
     private int currentAmmo;
     private bool isReloading = false;
 
-    private AudioSource audioSource;
+    private AudioSource fireAudioSource;
+    private AudioSource reloadAudioSource;
 
     public Camera fpsCam;
     public GameObject muzzleFlashObject;
@@ -29,7 +30,17 @@ public class ProjectileGun : MonoBehaviour
     void Start()
     {
         currentAmmo = maxAmmo;
-        audioSource = GetComponent<AudioSource>();
+
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+        if (audioSources.Length >= 2)
+        {
+            fireAudioSource = audioSources[0]; // Assign the first AudioSource
+            reloadAudioSource = audioSources[1]; // Assign the second AudioSource
+        }
+        else
+        {
+            Debug.LogError("Not enough audio sources found on the GameObject");
+        }
     }
 
     void Update()
@@ -37,7 +48,7 @@ public class ProjectileGun : MonoBehaviour
         if (isReloading)
             return;
 
-        if (currentAmmo <= 0 && Input.GetKeyDown(KeyCode.R))
+        if (currentAmmo != maxAmmo && Input.GetKeyDown(KeyCode.R))
         {
             StartCoroutine(Reload());
             return;
@@ -99,7 +110,7 @@ public class ProjectileGun : MonoBehaviour
             AudioClip clipToPlay = fireSounds[Random.Range(0, fireSounds.Length)];
             if (clipToPlay != null)
             {
-                audioSource.PlayOneShot(clipToPlay);
+                fireAudioSource.PlayOneShot(clipToPlay);
             }
             else
             {
@@ -115,7 +126,7 @@ public class ProjectileGun : MonoBehaviour
             AudioClip clipToPlay = reloadSounds[Random.Range(0, reloadSounds.Length)];
             if (clipToPlay != null)
             {
-                audioSource.PlayOneShot(clipToPlay);
+                reloadAudioSource.PlayOneShot(clipToPlay);
             }
             else
             {
