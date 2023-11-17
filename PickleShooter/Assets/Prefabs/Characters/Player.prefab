@@ -417,13 +417,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5618904415381666358}
     - target: {fileID: 1801843098, guid: 82187251aef1b1148a1a18e8dc79c68a, type: 3}
-      propertyPath: fireSounds.Array.size
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1801843098, guid: 82187251aef1b1148a1a18e8dc79c68a, type: 3}
-      propertyPath: fireSounds.Array.data[1]
-      value: 
-      objectReference: {fileID: 8300000, guid: c664a665454aaba41a028bfd2e1d8dd2, type: 3}
+    - target: {fileID: 3632097080260010981, guid: 82187251aef1b1148a1a18e8dc79c68a, type: 3}
+      propertyPath: m_Volume
+      value: 0.073
+      objectReference: {fileID: 0}
     - target: {fileID: 4647973359426506765, guid: 82187251aef1b1148a1a18e8dc79c68a, type: 3}
       propertyPath: m_Name
       value: Raygun

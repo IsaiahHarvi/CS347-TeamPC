@@ -272,8 +272,28 @@ MonoBehaviour:
   projectilePrefab: {fileID: 6991865130469304547, guid: 0310e6f670e7565478f67416de0a4173, type: 3}
   projectileSpeed: 50
   fireSounds:
-  - {fileID: 8300000, guid: c664a665454aaba41a028bfd2e1d8dd2, type: 3}
+  - {fileID: 8300000, guid: b9b7e653db703854dbcd16e68f10479b, type: 3}
+  - {fileID: 8300000, guid: 2044d61d88a34e84e8d13709c4caca25, type: 3}
+  - {fileID: 8300000, guid: dcc9445b8782fe1498a2b24695c67773, type: 3}
+  - {fileID: 8300000, guid: d45b41947a258244eafc30c255627095, type: 3}
+  - {fileID: 8300000, guid: d2487216d2b8b3142b645e37a7e1d871, type: 3}
+  - {fileID: 8300000, guid: 0d2b32ef32047f24c8e4f223c23bf0b6, type: 3}
+  - {fileID: 8300000, guid: f42fb442f73fa034395b2f2ed8092781, type: 3}
+  - {fileID: 8300000, guid: 6ab9c7b35230ba84a931480c5586de15, type: 3}
+  - {fileID: 8300000, guid: 5a8162a126afa15439c8733f5aebd67c, type: 3}
+  - {fileID: 8300000, guid: 696e59198674819488c726bab749d16a, type: 3}
+  - {fileID: 8300000, guid: 9af25bfd88a56e347b5908c7b8eeca24, type: 3}
+  - {fileID: 8300000, guid: bbd7bea6ed9db3340bec1af415e01b2d, type: 3}
+  - {fileID: 8300000, guid: 244df64a957444b48ae7d64535a7744a, type: 3}
+  - {fileID: 8300000, guid: 28ffcd163f8dbce4294ee8fbffe71ac4, type: 3}
+  - {fileID: 8300000, guid: dc974aad49e84ca44b439344ce9c5aa1, type: 3}
+  - {fileID: 8300000, guid: 4631cfacac904bc4bac5f352f7b71268, type: 3}
   reloadSounds:
-  - {fileID: 8300000, guid: 0a543d27468e9bc46b0da9e6e62af3f7, type: 3}
+  - {fileID: 8300000, guid: f74c08202b165b4468398850efb12aaa, type: 3}
+  - {fileID: 8300000, guid: dcdaf4cc2fdda7f42b43d63131a7c738, type: 3}
+  - {fileID: 8300000, guid: 66bad166c154b6d41bf0fcf7acdb21ad, type: 3}
+  - {fileID: 8300000, guid: 9b17a1665a8e8f74b921a2ebf77c758a, type: 3}
+  - {fileID: 8300000, guid: b32d8937639d6b643b9bc6bd379fecab, type: 3}
+  - {fileID: 8300000, guid: 98164f3f7a4d2454eaa9ba9c37e3b9b9, type: 3}
   fpsCam: {fileID: 0}
   muzzleTransform: {fileID: 94939172463147306}
