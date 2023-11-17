@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ProjectileGun : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class ProjectileGun : MonoBehaviour
     public Camera fpsCam;
     public GameObject muzzleFlashObject;
     public Transform muzzleTransform;
+
+    public TextMeshProUGUI ammoText;
 
     
 
@@ -67,6 +70,8 @@ public class ProjectileGun : MonoBehaviour
                 FireProjectile();
             }
         }
+
+        ammoText.text = currentAmmo + " / " + maxAmmo;
     }
 
     IEnumerator Reload()
