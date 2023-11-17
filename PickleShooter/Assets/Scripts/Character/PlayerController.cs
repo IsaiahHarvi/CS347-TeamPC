@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,11 +20,13 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private bool isCrouching = false;
     private bool isSprinting = false;
-
     private float footstepSoundTimer = 0f;
     private float footstepSoundInterval = 0.5f; 
 
     private float distanceToGround = 1.5f;
+    
+
+    public Slider healthSlider;
     
 
 
@@ -81,6 +84,8 @@ public class PlayerController : MonoBehaviour
         }
 
         CheckAndPlayFootstepSound();
+
+        healthSlider.value = health;
     }
 
     void FixedUpdate()

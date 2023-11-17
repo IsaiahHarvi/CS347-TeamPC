@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class HitscanGun : MonoBehaviour
 {
@@ -30,6 +32,8 @@ public class HitscanGun : MonoBehaviour
 
     private Vector3 originalRotation; // To store the original rotation of the weapon
     private float currentRecoilOffset = 0f; // Current recoil offset on X-axis
+
+    public TextMeshProUGUI ammoText;
 
     void Start()
     {
@@ -74,6 +78,8 @@ public class HitscanGun : MonoBehaviour
         // Apply recoil recovery
         currentRecoilOffset = Mathf.Lerp(currentRecoilOffset, 0f, recoilRecoverySpeed * Time.deltaTime);
         ApplyRecoil();
+
+        ammoText.text = currentAmmo + " / " + maxAmmo;
     }
 
     IEnumerator Reload()
