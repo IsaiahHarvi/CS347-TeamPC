@@ -3,7 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    // Function to load a scene by its number
+    public static int currentLevelIndex = 1; // Static variable to track current level
+
     public void LoadScene(int sceneNumber)
     {
         SceneManager.LoadScene(sceneNumber);
@@ -23,5 +24,9 @@ public class SceneLoader : MonoBehaviour
             // Stop playing the scene
             UnityEditor.EditorApplication.isPlaying = false;
         #endif
+    }
+
+    public void IncrementLevel() {
+        currentLevelIndex++;
     }
 }
