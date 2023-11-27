@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DroneProjectile
       objectReference: {fileID: 0}
+    - target: {fileID: 6991865130469304547, guid: 0310e6f670e7565478f67416de0a4173, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6991865130469304557, guid: 0310e6f670e7565478f67416de0a4173, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

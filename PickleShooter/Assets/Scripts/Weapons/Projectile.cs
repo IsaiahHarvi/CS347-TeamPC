@@ -22,6 +22,10 @@ public class Projectile : MonoBehaviour
         {
             collision.gameObject.GetComponent<Target>().TakeDamage(damage);
         }
+        else if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<PlayerController>().TakeDamage(damage);
+        }
         else
         {
             Debug.Log("Hit something else: " + collision.gameObject.tag);

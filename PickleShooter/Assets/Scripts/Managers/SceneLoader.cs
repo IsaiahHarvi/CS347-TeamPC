@@ -29,4 +29,7 @@ public class SceneLoader : MonoBehaviour
     public void IncrementLevel() {
         currentLevelIndex++;
     }
+    public void ResetLevel() {
+        currentLevelIndex = 1;
+    }
 }

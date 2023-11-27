@@ -13,13 +13,24 @@ public class EnemySpawner : MonoBehaviour
 
     private Vector3 GetRandomSpawnPosition(Wave wave)
     {
-        Vector3 randomDirection = Random.insideUnitSphere * wave.maxSpawnDistance;
-        randomDirection += transform.position;
-        randomDirection.y = 0;
-
+        float angle = Random.Range(0f, 2f * Mathf.PI);
+        Vector3 direction = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
         float distance = Random.Range(wave.minSpawnDistance, wave.maxSpawnDistance);
-        Vector3 finalPosition = transform.position + randomDirection.normalized * distance;
+        Vector3 basePosition = transform.position + direction * distance;
 
-        return finalPosition;
+        RaycastHit hit;
+        // Cast a ray downwards from the basePosition
+        if (Physics.Raycast(basePosition + Vector3.up * 100, Vector3.down, out hit, Mathf.Infinity))
+        {
+            // If it hits something (like terrain), set the y position to the hit point
+            basePosition.y = hit.point.y;
+        }
+        else
+        {
+            basePosition.y = 25; // Set a default height
+        }
+
+        return basePosition;
     }
+
 }

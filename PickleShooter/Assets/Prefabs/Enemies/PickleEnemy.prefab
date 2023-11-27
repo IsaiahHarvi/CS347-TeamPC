@@ -247,7 +247,7 @@ MonoBehaviour:
   soundEffects:
   - {fileID: 8300000, guid: 404e356c9a17bb34b8e6a99e780c503d, type: 3}
   - {fileID: 8300000, guid: b80df03376d7c1f4292af62aff752669, type: 3}
-  - {fileID: 8300000, guid: 6e13ae7ba53e47548a3373422f2264f3, type: 3}
+  - {fileID: 8300000, guid: 404e356c9a17bb34b8e6a99e780c503d, type: 3}
   - {fileID: 8300000, guid: 1beb92be173496347979f3f02fd70f63, type: 3}
   - {fileID: 8300000, guid: e4a664a739a3eb6459428c1d529c3b88, type: 3}
   - {fileID: 8300000, guid: 92b5630cafb2f0a46829260c529e0759, type: 3}

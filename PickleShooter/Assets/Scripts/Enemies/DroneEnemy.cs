@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class DroneEnemy : MonoBehaviour
 {
@@ -9,21 +8,20 @@ public class DroneEnemy : MonoBehaviour
     private Rigidbody rb;
     public float flyingSpeed = 5f;
     public float hoverHeight = 10f;
+    public float minimumDistance = 25f; 
 
     // Target Tracking
     public Transform target;
 
     // Attack
     public GameObject projectilePrefab;
-    public float attackRate = 2f; // Time in seconds between attacks
+    public float attackRate = 2f; 
     private float lastAttackTime = 0f;
 
     void Start()
     {
-        // Initialize Rigidbody
         rb = GetComponent<Rigidbody>();
 
-        // Set target to a GameObject with tag 'Player' if target is null
         if (target == null)
         {
             GameObject targetObject = GameObject.FindGameObjectWithTag("Player");
@@ -40,12 +38,25 @@ public class DroneEnemy : MonoBehaviour
 
     void Update()
     {
-        // Target Tracking and Movement
         if (target != null)
         {
             Vector3 targetPosition = new Vector3(target.position.x, target.position.y + hoverHeight, target.position.z);
             Vector3 direction = targetPosition - transform.position;
-            rb.velocity = direction.normalized * flyingSpeed;
+
+            // Maintain minimum distance from the target
+            if (direction.magnitude > minimumDistance)
+            {
+                rb.velocity = direction.normalized * flyingSpeed;
+            }
+            else
+            {
+                rb.velocity = Vector3.zero;
+            }
+
+            Vector3 directionToTarget = (target.position - transform.position).normalized;
+            Quaternion lookRotation = Quaternion.LookRotation(directionToTarget);
+            Quaternion offsetRotation = Quaternion.Euler(0, 180, 0);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation * offsetRotation, Time.deltaTime * 5f); 
 
             // Attack logic
             if (Time.time - lastAttackTime > attackRate)
@@ -62,11 +73,8 @@ public class DroneEnemy : MonoBehaviour
 
     void ShootAtTarget()
     {
-        // Instantiate the projectile
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-        
-        // Calculate the direction to shoot the projectile
         Vector3 shootDirection = (target.position - transform.position).normalized;
-        projectile.GetComponent<Rigidbody>().velocity = shootDirection * 10f; // Adjust speed as needed
+        projectile.GetComponent<Rigidbody>().velocity = shootDirection * 40f; 
     }
 }
