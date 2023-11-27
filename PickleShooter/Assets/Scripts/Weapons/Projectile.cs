@@ -18,7 +18,7 @@ public class Projectile : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         // Check the tag of the object the projectile collides with
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Pickle"))
         {
             collision.gameObject.GetComponent<Target>().TakeDamage(damage);
         }

@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 7008948370051507909}
   m_Layer: 0
   m_Name: PickleEnemy
-  m_TagString: Enemy
+  m_TagString: Pickle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -256,6 +256,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c9fae3a67c2287c4f87e044b84ff170c, type: 3}
   - {fileID: 8300000, guid: 2522370380080974a9dafbad19f0f8ee, type: 3}
   - {fileID: 8300000, guid: d908a4fa1a3858b4b8c16887880997c1, type: 3}
+  damageAmount: 10
   target: {fileID: 0}
 --- !u!195 &5979927871097142914
 NavMeshAgent:
