@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class HitscanGun : MonoBehaviour
+public class HitscanGun : MonoBehaviour, IWeapon
 {
     public float damage = 10f;
     public float range = 100f;
@@ -156,6 +156,12 @@ public class HitscanGun : MonoBehaviour
     {
         // Apply the current recoil to the weapon's rotation
         transform.localEulerAngles = new Vector3(originalRotation.x + currentRecoilOffset, originalRotation.y, originalRotation.z);
+    }
+
+    public bool IsReloading()
+    {
+        // Return the reloading state
+        return isReloading;
     }
 
 }
