@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ProjectileGun : MonoBehaviour
+public class ProjectileGun : MonoBehaviour, IWeapon
 {
     public float damage = 10f;
     public float fireRate = 1f;
@@ -28,22 +28,10 @@ public class ProjectileGun : MonoBehaviour
 
     public TextMeshProUGUI ammoText;
 
-    
-
     void Start()
     {
         currentAmmo = maxAmmo;
-
-        AudioSource[] audioSources = GetComponents<AudioSource>();
-        if (audioSources.Length >= 2)
-        {
-            fireAudioSource = audioSources[0]; // Assign the first AudioSource
-            reloadAudioSource = audioSources[1]; // Assign the second AudioSource
-        }
-        else
-        {
-            Debug.LogError("Not enough audio sources found on the GameObject");
-        }
+        AssignAudioSources();
     }
 
     void Update()
@@ -51,31 +39,55 @@ public class ProjectileGun : MonoBehaviour
         if (isReloading)
             return;
 
-        if (currentAmmo != maxAmmo && Input.GetKeyDown(KeyCode.R))
+        HandleReloadInput();
+        HandleFireInput();
+        UpdateAmmoText();
+    }
+
+    private void AssignAudioSources()
+    {
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+        if (audioSources.Length >= 2)
+        {
+            fireAudioSource = audioSources[0];
+            reloadAudioSource = audioSources[1];
+        }
+        else
+        {
+            Debug.LogError("Not enough audio sources found on the GameObject");
+        }
+    }
+
+    private void HandleReloadInput()
+    {
+        if (currentAmmo < maxAmmo && Input.GetKeyDown(KeyCode.R))
         {
             StartCoroutine(Reload());
-            return;
         }
+    }
 
+    private void HandleFireInput()
+    {
         if (Time.time >= nextTimeToFire && currentAmmo > 0)
         {
-            if (isAutomatic && Input.GetButton("Fire1"))
-            {
-                nextTimeToFire = Time.time + 1f / fireRate;
-                FireProjectile();
-            }
-            else if (!isAutomatic && Input.GetButtonDown("Fire1"))
+            bool fireButtonPressed = isAutomatic ? Input.GetButton("Fire1") : Input.GetButtonDown("Fire1");
+            if (fireButtonPressed)
             {
                 nextTimeToFire = Time.time + 1f / fireRate;
                 FireProjectile();
             }
         }
+    }
 
-        ammoText.text = currentAmmo + " / " + maxAmmo;
+    private void UpdateAmmoText()
+    {
+        ammoText.text = $"{currentAmmo} / {maxAmmo}";
     }
 
     IEnumerator Reload()
     {
+        if (isReloading) yield break;
+
         isReloading = true;
         Debug.Log("Reloading...");
         PlayReloadSound();
@@ -92,7 +104,7 @@ public class ProjectileGun : MonoBehaviour
             Rigidbody rb = projectile.GetComponent<Rigidbody>();
             rb.velocity = muzzleTransform.forward * projectileSpeed;
             PlayGunFireSound();
-            StartCoroutine(MuzzleFlashSequence()); // Activate muzzle flash
+            StartCoroutine(MuzzleFlashSequence());
             currentAmmo--;
         }
         else
@@ -104,39 +116,39 @@ public class ProjectileGun : MonoBehaviour
     IEnumerator MuzzleFlashSequence()
     {
         muzzleFlashObject.SetActive(true);
-        yield return new WaitForSeconds(0.2f); 
+        yield return new WaitForSeconds(0.2f);
         muzzleFlashObject.SetActive(false);
     }
 
     void PlayGunFireSound()
     {
-        if (fireSounds != null && fireSounds.Length > 0)
-        {
-            AudioClip clipToPlay = fireSounds[Random.Range(0, fireSounds.Length)];
-            if (clipToPlay != null)
-            {
-                fireAudioSource.PlayOneShot(clipToPlay);
-            }
-            else
-            {
-                Debug.LogWarning("Attempted to play a null fire sound clip.");
-            }
-        }
+        PlaySound(fireAudioSource, fireSounds);
     }
 
     void PlayReloadSound()
     {
-        if (reloadSounds != null && reloadSounds.Length > 0)
+        PlaySound(reloadAudioSource, reloadSounds);
+    }
+
+    private void PlaySound(AudioSource source, AudioClip[] clips)
+    {
+        if (clips != null && clips.Length > 0)
         {
-            AudioClip clipToPlay = reloadSounds[Random.Range(0, reloadSounds.Length)];
+            AudioClip clipToPlay = clips[Random.Range(0, clips.Length)];
             if (clipToPlay != null)
             {
-                reloadAudioSource.PlayOneShot(clipToPlay);
+                source.PlayOneShot(clipToPlay);
             }
             else
             {
-                Debug.LogWarning("Attempted to play a null reload sound clip.");
+                Debug.LogWarning("Attempted to play a null audio clip.");
             }
         }
+    }
+
+    public bool IsReloading()
+    {
+        // Return the reloading state
+        return isReloading;
     }
 }

@@ -9,7 +9,13 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 0b205ffaf437aad49b2a9797c5a8986d
   - enabled: 1
-    path: Assets/Scenes/ShootingRange.unity
+    path: Assets/Scenes/Garage.unity
+    guid: da4d2fc9414cb134a911170261e4445f
+  - enabled: 1
+    path: Assets/Scenes/Desert/Desert.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/City/CityScene.unity
+    guid: 44341de968cd0f24ba31554bd680c0ad
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 168f627ca9747844faef9bf542d3e4c8, type: 2}

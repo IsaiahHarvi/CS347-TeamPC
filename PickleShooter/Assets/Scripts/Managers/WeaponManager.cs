@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    public GameObject[] weapons; // Array to hold all weapon GameObjects
-    private int currentWeaponIndex; // To keep track of the currently active weapon
+    public GameObject[] weapons;
+    private int currentWeaponIndex;
 
     void Start()
     {
@@ -14,28 +14,34 @@ public class WeaponManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) // Switch to weapon 1
+        if (Input.GetKeyDown(KeyCode.Alpha1) && CanSwitchWeapon())
         {
             SwitchWeapon(0);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2)) // Switch to weapon 2
+        if (Input.GetKeyDown(KeyCode.Alpha2) && CanSwitchWeapon())
         {
             SwitchWeapon(1);
         }
         // Add more if statements for additional weapons
+    }
 
-        // Additional input checks can be added here for other weapon switching methods
+    private bool CanSwitchWeapon()
+    {
+        IWeapon currentWeaponScript = weapons[currentWeaponIndex].GetComponent<IWeapon>();
+        if (currentWeaponScript != null)
+        {
+            return !currentWeaponScript.IsReloading();
+        }
+        return true; // If the weapon doesn't implement IWeapon, assume it can be switched
     }
 
     private void InitializeWeapons()
     {
-        // Deactivate all weapons at start
         foreach (var weapon in weapons)
         {
             weapon.SetActive(false);
         }
 
-        // Activate the first weapon by default
         if (weapons.Length > 0)
         {
             weapons[0].SetActive(true);
@@ -47,9 +53,9 @@ public class WeaponManager : MonoBehaviour
     {
         if (index >= 0 && index < weapons.Length && index != currentWeaponIndex)
         {
-            weapons[currentWeaponIndex].SetActive(false); // Deactivate current weapon
+            weapons[currentWeaponIndex].SetActive(false);
             currentWeaponIndex = index;
-            weapons[currentWeaponIndex].SetActive(true); // Activate new weapon
+            weapons[currentWeaponIndex].SetActive(true);
         }
     }
 }

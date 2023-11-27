@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     private float footstepSoundInterval = 0.5f; 
 
     private float distanceToGround = 1.5f;
+
+    public SceneLoader sceneLoader;
     
 
     public Slider healthSlider;
@@ -80,7 +82,7 @@ public class PlayerController : MonoBehaviour
 
         if (health <= 0)
         {
-            // Handle player death
+            GameOver();
         }
 
         CheckAndPlayFootstepSound();
@@ -167,5 +169,12 @@ public class PlayerController : MonoBehaviour
     {
         health += amount;
         if (health > 100) health = 100;
+    }
+
+    private void GameOver() 
+    {
+        sceneLoader.LoadScene(0);
+        sceneLoader.ResetLevel();
+        Cursor.lockState = CursorLockMode.None;
     }
 }
